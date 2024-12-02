@@ -1,0 +1,23 @@
+.punteggio {
+    font-size: 1.5rem;
+    color: #000000;
+    font-weight: 600;
+}
+
+/* Adatta la larghezza del font alla dimensione del monitor */
+.punteggioFrontend {
+    font-family: Arial, sans-serif; /* Imposta il font desiderato */
+    font-weight: bold; /* Rende il font in grassetto */
+    color: #000; /* Colore del testo */
+    font-size: 80vh; /* La dimensione del font è relativa alla larghezza della finestra */
+    text-align: center; /* Centra il testo nella label */
+    position: absolute; /* Posiziona la label in modo assoluto */
+    top: 50%; /* Posiziona la label a metà della finestra */
+    left: 50%; /* Posiziona la label a metà della finestra */
+    transform: translate(-50%, -50%); /* Centra la label esattamente */
+    z-index: 100; /* La label sarà sopra gli altri elementi */
+    background-color: rgba(255, 255, 255, 0.5); /* Aggiunge uno sfondo semi-trasparente alla label per migliorarne la visibilità */
+    padding: 10px; /* Padding per rendere il testo meno incollato ai bordi */
+    border-radius: 5px; /* Angoli arrotondati per un effetto più morbido */
+}
+
