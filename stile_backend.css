@@ -40,34 +40,51 @@ table {
     margin-bottom: 10px;
 }
 
-/* Pulsanti */
+/* Pulsanti: stili comuni */
 input[type="button"] {
     font-size: 1rem;
     font-weight: bold;
-    padding: 10px 20px;
+    padding: 10px;
     margin: 5px 0;
-    background-color: #007bff;
-    color: white;
+    width: 200px;
+    height: 40px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    color: white;
+    text-align: center;
 }
 
-    /* Effetti al passaggio del mouse sui pulsanti */
-    input[type="button"]:hover {
-        background-color: #0056b3;
+/* Pulsanti specifici */
+#AddScoreHome, #AddScoreGuest {
+    background-color: #28a745;
+}
+
+    #AddScoreHome:hover, #AddScoreGuest:hover {
+        background-color: #218838;
+    }
+
+#SubtractScoreHome, #SubtractScoreGuest {
+    background-color: #fd7e14;
+}
+
+    #SubtractScoreHome:hover, #SubtractScoreGuest:hover {
+        background-color: #e36414;
+    }
+
+#ResetScoreHome, #ResetScoreGuest, #ResetScoreAll {
+    background-color: #dc3545;
+}
+
+    #ResetScoreHome:hover, #ResetScoreGuest:hover, #ResetScoreAll:hover {
+        background-color: #a71d2a;
     }
 
 /* Pulsante speciale per azzerare tutto */
 #ResetScoreAll {
     width: 100%;
-    background-color: #dc3545;
 }
-
-    #ResetScoreAll:hover {
-        background-color: #a71d2a;
-    }
 
 /* Mobile-first design */
 @media screen and (max-width: 480px) {
@@ -77,6 +94,7 @@ input[type="button"] {
 
     input[type="button"] {
         font-size: 0.9rem;
-        padding: 8px 15px;
+        width: 90px;
+        height: 35px;
     }
 }
