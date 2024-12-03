@@ -73,9 +73,9 @@ window.onload = function () {
 
     // Funzione per aggiornare la label con il punteggio frontend
     function aggiornaLabelFront() {
-        const label = document.getElementById("PunteggioFront");
+        const label = document.getElementById("PunteggioFrontHome");
         if (label) {
-            console.log("Aggiornando PunteggioFront (frontend)"); // Debugging
+            console.log("Aggiornando PunteggioFrontHome (frontend)"); // Debugging
             label.textContent = punteggioHome;
         }
     }
