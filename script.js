@@ -11,9 +11,7 @@ window.onload = function () {
     // Subito dopo il caricamento della pagina, aggiorna la label
     aggiornaLabelHomeBackend();  // Per la pagina che ha la label con id="Punteggio"
     aggiornaLabelGuestBackend();  // Per la pagina che ha la label con id="Punteggio"
-    aggiornaLabelHomeFrontend();  // Per la pagina che ha la label con id="PunteggioFront"
-    aggiornaLabelGuestFrontend();  // Per la pagina che ha la label con id="PunteggioFront"
-
+    aggiornaLabelFront();  // Per la pagina che ha la label con id="PunteggioFront"
 
     // Verifica se la pagina ha i pulsanti, e se li ha, aggiungi gli event listener
     const AddScoreHome = document.getElementById("AddScoreHome");
@@ -74,7 +72,7 @@ window.onload = function () {
     }
 
     // Funzione per aggiornare la label con il punteggio frontend
-    function aggiornaLabelGuestFrontend() {
+    function aggiornaLabelFront() {
         const label = document.getElementById("PunteggioFrontHome");
         if (label) {
             console.log("Aggiornando PunteggioFrontHome (frontend)"); // Debugging
@@ -86,7 +84,7 @@ window.onload = function () {
     function aggiungiPuntoHome() {
         punteggioHome += 1;
         aggiornaLabelHomeBackend();
-        aggiornaLabelGuestFrontend();
+        aggiornaLabelFront();
         // Salvo il punteggio nel localStorage
         localStorage.setItem("punteggio", punteggioHome);
     }
@@ -95,7 +93,7 @@ window.onload = function () {
     function aggiungiPuntoGuest() {
         punteggioGuest += 1;
         aggiornaLabelGuestBackend();
-        //aggiornaLabelGuestFrontend();
+        //aggiornaLabelFront();
         // Salvo il punteggio nel localStorage
         localStorage.setItem("punteggioGuest", punteggioGuest);
     }
@@ -106,7 +104,7 @@ window.onload = function () {
             punteggioHome -= 1;
         }
         aggiornaLabelHomeBackend();
-        aggiornaLabelGuestFrontend();
+        aggiornaLabelFront();
         // Salvo il punteggio nel localStorage
         localStorage.setItem("punteggio", punteggioHome);
     }
@@ -117,7 +115,7 @@ window.onload = function () {
             punteggioGuest -= 1;
         }
         aggiornaLabelGuestBackend();
-        //aggiornaLabelGuestFrontend();
+        //aggiornaLabelFront();
         // Salvo il punteggio nel localStorage
         localStorage.setItem("punteggioGuest", punteggioGuest);
     }
@@ -126,7 +124,7 @@ window.onload = function () {
     function azzeraPuntoHome() {
         punteggioHome = 0;
         aggiornaLabelHomeBackend();
-        aggiornaLabelGuestFrontend();
+        aggiornaLabelFront();
         // Salvo il punteggio nel localStorage
         localStorage.setItem("punteggio", punteggioHome);
     }
@@ -135,7 +133,7 @@ window.onload = function () {
     function azzeraPuntoGuest() {
         punteggioGuest = 0;
         aggiornaLabelGuestBackend();
-        //aggiornaLabelGuestFrontend();
+        //aggiornaLabelFront();
         // Salvo il punteggio nel localStorage
         localStorage.setItem("punteggioGuest", punteggioGuest);
     }
@@ -149,7 +147,7 @@ window.onload = function () {
         localStorage.setItem("punteggio", punteggioHome);
         aggiornaLabelHomeBackend();
         aggiornaLabelGuestBackend();
-        //aggiornaLabelGuestFrontend();
+        //aggiornaLabelFront();
         // Salvo il punteggio nel localStorage
         localStorage.setItem("punteggioHome", punteggioHome);
         localStorage.setItem("punteggioGuest", punteggioGuest);
@@ -163,6 +161,6 @@ window.onload = function () {
         punteggioHome = parseInt(localStorage.getItem("punteggio")) || 0;
         console.log("Timer attivo, aggiornamento punteggio:", punteggioHome); // Debugging
         aggiornaLabelHomeBackend();
-        aggiornaLabelGuestFrontend();
+        aggiornaLabelFront();
     }, 1000);
 };
