@@ -41,8 +41,16 @@ body {
 
 /* Stile delle label */
 .punteggio {
-    font-size: 80vh;
+    font-size: 70vh;
     font-weight: bold;
     color: #333;
     display: block;
+}
+
+/* Stile delle etichette sopra i punteggi */
+.etichetta {
+    font-size: 5em;
+    font-weight: bold;
+    color: #555;
+    padding: 10px 0;
 }
