@@ -73,12 +73,21 @@ window.onload = function () {
         }
     }
 
-    // Funzione per aggiornare la label con il punteggio frontend
+    // Funzione per aggiornare la label Guest con il punteggio frontend
     function aggiornaLabelGuestFrontend() {
         const label = document.getElementById("PunteggioFrontHome");
         if (label) {
             console.log("Aggiornando PunteggioFrontHome (frontend)"); // Debugging
             label.textContent = punteggioHome;
+        }
+    }
+
+    // Funzione per aggiornare la label Home con il punteggio frontend
+    function aggiornaLabelHomeFrontend() {
+        const label = document.getElementById("PunteggioFrontGuest");
+        if (label) {
+            console.log("Aggiornando PunteggioFrontGuest (frontend)"); // Debugging
+            label.textContent = punteggioGuest;
         }
     }
 
@@ -95,7 +104,7 @@ window.onload = function () {
     function aggiungiPuntoGuest() {
         punteggioGuest += 1;
         aggiornaLabelGuestBackend();
-        //aggiornaLabelGuestFrontend();
+        aggiornaLabelHomeFrontend();
         // Salvo il punteggio nel localStorage
         localStorage.setItem("punteggioGuest", punteggioGuest);
     }
@@ -117,7 +126,7 @@ window.onload = function () {
             punteggioGuest -= 1;
         }
         aggiornaLabelGuestBackend();
-        //aggiornaLabelGuestFrontend();
+        aggiornaLabelHomeFrontend();
         // Salvo il punteggio nel localStorage
         localStorage.setItem("punteggioGuest", punteggioGuest);
     }
@@ -135,7 +144,7 @@ window.onload = function () {
     function azzeraPuntoGuest() {
         punteggioGuest = 0;
         aggiornaLabelGuestBackend();
-        //aggiornaLabelGuestFrontend();
+        aggiornaLabelHomeFrontend();
         // Salvo il punteggio nel localStorage
         localStorage.setItem("punteggioGuest", punteggioGuest);
     }
@@ -149,7 +158,8 @@ window.onload = function () {
         localStorage.setItem("punteggio", punteggioHome);
         aggiornaLabelHomeBackend();
         aggiornaLabelGuestBackend();
-        //aggiornaLabelGuestFrontend();
+        aggiornaLabelGuestFrontend();
+        aggiornaLabelGuestFrontend();
         // Salvo il punteggio nel localStorage
         localStorage.setItem("punteggioHome", punteggioHome);
         localStorage.setItem("punteggioGuest", punteggioGuest);
@@ -161,8 +171,12 @@ window.onload = function () {
     setInterval(() => {
         // Recupera il punteggio ogni volta dal localStorage e aggiorna le label
         punteggioHome = parseInt(localStorage.getItem("punteggio")) || 0;
+        punteggioGuest = parseInt(localStorage.getItem("punteggioGuest")) || 0;
         console.log("Timer attivo, aggiornamento punteggio:", punteggioHome); // Debugging
         aggiornaLabelHomeBackend();
         aggiornaLabelGuestFrontend();
+        aggiornaLabelGuestBackend();
+        aggiornaLabelHomeFrontend();
     }, 1000);
+
 };
