@@ -87,12 +87,12 @@ input[type="button"] {
 }
 
 /* Pulsanti timer */
-#Start {
-    background-color:#0032A8;
+#startStopButton {
+    background-color: #0032A8;
 }
 
-    #Start:hover {
-        background-color:#001851;
+    #startStopButton:hover {
+        background-color: #001851;
     }
 
 

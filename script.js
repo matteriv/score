@@ -214,6 +214,7 @@ window.onload = function () {
 
      // Mostra il contatore nella pagina
         document.getElementById("timer").textContent = `${formattedMinutes}:${formattedSeconds}`;
+
     }
 
     // Avvia il contatore ogni secondo
