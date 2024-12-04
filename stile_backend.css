@@ -86,6 +86,16 @@ input[type="button"] {
     width: 100%;
 }
 
+/* Pulsanti timer */
+#Start {
+    background-color:#0032A8;
+}
+
+    #Start:hover {
+        background-color:#001851;
+    }
+
+
 /* Mobile-first design */
 @media screen and (max-width: 480px) {
     .punteggio {

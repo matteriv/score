@@ -179,4 +179,44 @@ window.onload = function () {
         aggiornaLabelHomeFrontend();
     }, 1000);
 
+
+    //////////////////////////////////////////////////////
+    //  Gestione dei timer
+    /////////////////////////////////////////////////////
+
+
+    // Variabili per i minuti e i secondi
+    let minuti = 0;
+    let secondi = 0;
+
+    // Funzione per aggiornare il contatore
+    function updateCounter() {
+
+
+     // Incrementa i secondi
+
+        secondi++;
+
+        // Salvo i secondi nel localStorage
+        localStorage.setItem("secondi", secondi);
+        console.log("Secondi: ", secondi); // Debugging
+
+
+     // Se i secondi raggiungono 60, incrementa i minuti e resetta i secondi
+        if (secondi === 60) {
+            secondi = 0;
+            minuti++;
+        }
+
+     // Formatta i minuti e i secondi con due cifre
+        let formattedMinutes = minuti < 10 ? "0" + minuti : minuti;
+        let formattedSeconds = secondi < 10 ? "0" + secondi : secondi;
+
+     // Mostra il contatore nella pagina
+        document.getElementById("timer").textContent = `${formattedMinutes}:${formattedSeconds}`;
+    }
+
+    // Avvia il contatore ogni secondo
+    setInterval(updateCounter, 1000);
+
 };
