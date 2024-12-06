@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="stile.css" />
+</head>
+<body>
+    <table style="width:100%; border: 1px solid black;">
+        <tr>
+            <td>
+                <label class="punteggio" id="ScoreHome"></label>
+                <br>
+            </td>
+            <td>
+                <label class="punteggio" id="ScoreGuest"></label>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input id="SelectPunto" type="button" onclick="eseguiQuerySelect()" value="Select Punto" />
+            </td>
+            <td>
+                <input id="UpdatePunto" type="button" onclick="eseguiQueryUpdate()" value="Update Punto" />
+            </td>
+            <td>
+                <input id="DeletePunto" type="button" onclick="eseguiQueryDelete()" value="Delete Punto" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="punteggio">IdScore</label> 
+                <input id="IdScore" type="text" title="IdScore" />
+            </td>
+        </tr>
+    </table>
+    <script src="client.js"></script>
+</body>
+</html>

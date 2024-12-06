@@ -1,0 +1,66 @@
+/* Imposta lo stile di base per il corpo */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+/* Tabelle principali */
+table {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+    /* Bordo delle celle */
+    table td {
+        border: 1px solid #ccc;
+        padding: 15px;
+        text-align: center;
+    }
+
+/* Stile delle etichette dei punteggi */
+.punteggio {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Pulsanti: stili comuni */
+input[type="button"] {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px;
+    margin: 5px 0;
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white;
+    text-align: center;
+}
+
+/* Pulsanti specifici */
+#SelectPunto, #UpdatePunto, #DeletePunto {
+    background-color: #28a745;
+}
+
+    #SelectPunto:hover, #UpdatePunto:hover, #DeletePunto:hover {
+        background-color: #218838;
+    }
