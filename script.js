@@ -180,6 +180,43 @@ window.onload = function () {
     }, 1000);
 
 
+
+    //////////////////////////////////////////////////////
+    //  Gestione dei dati su Sb SqLite
+    /////////////////////////////////////////////////////
+
+
+
+    // Funzione per aggiornare i dati sul server
+    async function aggiornaDatabase() {
+        await fetch('http://localhost:3000/punteggi', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ punteggioHome, punteggioGuest, secondi, minuti }),
+        });
+    }
+
+    // Adatta le funzioni per salvare i punteggi su SQLite
+    function aggiungiPuntoHome() {
+        punteggioHome += 1;
+        aggiornaLabelHomeBackend();
+        aggiornaLabelGuestFrontend();
+        aggiornaDatabase(); // Salva su SQLite
+    }
+
+    function aggiungiPuntoGuest() {
+        punteggioGuest += 1;
+        aggiornaLabelGuestBackend();
+        aggiornaLabelHomeFrontend();
+        aggiornaDatabase(); // Salva su SQLite
+    }
+
+
+
+
+
+
+
     //////////////////////////////////////////////////////
     //  Gestione dei timer
     /////////////////////////////////////////////////////
