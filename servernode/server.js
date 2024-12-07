@@ -8,7 +8,7 @@ const port = 3000;
 const config = {
     user: 'sa', // Nome utente
     password: 'Aebsistemi@.', // Password
-    server: 'NB-MATTEO', // Nome del server SQL
+    server: 'DESKTOP-P3HHPDE', // Nome del server SQL
     database: 'Score', // Nome del database
     options: {
         encrypt: true, // Per Azure, se necessario
@@ -49,27 +49,40 @@ app.get('/run-query', async (req, res) => {
 });
 
 
-// Route per eseguire un UPDATE
+// Route per eseguire un UPDATE con incremento di +1
 app.post('/update-query', async (req, res) => {
     try {
         // Connessione al database
         await sql.connect(config);
 
         // Dati inviati dal client
-        const { IdScore, ScoreHome, ScoreGuest } = req.body;  // Destruttura i dati inviati dal client
+        const { IdScore, team } = req.body;  // Destruttura i dati inviati dal client
 
         // Verifica che tutti i dati necessari siano presenti
-        if (!IdScore || ScoreHome === undefined || ScoreGuest === undefined) {
+        if (!IdScore || !team) {
             return res.status(400).send('Dati incompleti per l\'aggiornamento');
         }
 
+        // Prepara la query in base al team specificato per l'incremento
+        let updateQuery;
+
+        if (team === 'home') {
+            // Incrementa ScoreHome di 1
+            updateQuery = `UPDATE Score SET ScoreHome = ScoreHome + 1 WHERE IdScore = ${IdScore}`;
+        } else if (team === 'guest') {
+            // Incrementa ScoreGuest di 1
+            updateQuery = `UPDATE Score SET ScoreGuest = ScoreGuest + 1 WHERE IdScore = ${IdScore}`;
+        } else {
+            return res.status(400).send('Valore di team non valido');
+        }
+
         // Esegui la query SQL per aggiornare i punteggi
-        const result = await sql.query`UPDATE Score SET ScoreHome = ${ScoreHome}, ScoreGuest = ${ScoreGuest} WHERE IdScore = ${IdScore}`;
+        const result = await sql.query(updateQuery);
 
         // Verifica se il record è stato aggiornato
         if (result.rowsAffected[0] > 0) {
             // Se il numero di righe modificate è maggiore di 0, l'update è riuscito
-            res.json({ success: true, message: 'Record aggiornato con successo' });
+            res.json({ success: true, message: 'Punteggio aggiornato con successo' });
         } else {
             // Se non è stato aggiornato nessun record, potrebbe significare che l'id non esiste
             res.status(404).json({ success: false, message: 'Record non trovato' });
@@ -114,9 +127,30 @@ app.post('/delete-query', async (req, res) => {
 });
 
 
+// Route per ottenere il record con l'ID più grande
+app.get('/latest-record', async (req, res) => {
+    try {
+        // Connessione al database
+        await sql.connect(config);
+
+        // Query per ottenere il record con l'ID più grande
+        const result = await sql.query`SELECT TOP 1 * FROM Score ORDER BY IdScore DESC`;
+
+        // Restituisci il record al client
+        if (result.recordset.length > 0) {
+            res.json(result.recordset[0]); // Restituisci il primo (e unico) record
+        } else {
+            res.status(404).send('Nessun record trovato');
+        }
+    } catch (err) {
+        console.error('Errore durante il recupero del record più recente', err);
+        res.status(500).send('Errore nel server durante il recupero dei dati');
+    }
+});
+
 
 
 // Avvia il server
-app.listen(port, () => {
-    console.log(`Server in ascolto su http://nb-matteo:${port}`);
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Server in ascolto su http://DESKTOP-P3HHPDE:${port}`);
 });

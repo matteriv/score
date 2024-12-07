@@ -10,22 +10,22 @@
     <table style="width:100%; border: 1px solid black;">
         <tr>
             <td>
-                <label class="punteggio" id="PunteggioHome"></label>
+                <label class="punteggio" id="ScoreHome"></label>
                 <br>
             </td>
-            <td><label class="punteggio" id="PunteggioGuest"></label></td>
+            <td><label class="punteggio" id="ScoreGuest"></label></td>
             <td><label class="punteggio" id="timer">Timer</label></td>
         </tr>
         <tr>
             <td>
-                <input id="AddScoreHome" type="button" value="Aggiungi punto" />
+                <input id="ScorePlusHome" type="button" value="Aggiungi punto" />
                 <br>
                 <input id="SubtractScoreHome" type="button" value="Sottrai punto" />
                 <br>
                 <input id="ResetScoreHome" type="button" value="Azzera punti" />
             </td>
             <td>
-                <input id="AddScoreGuest" type="button" value="Aggiungi punto" />
+                <input id="ScorePlusGuest" type="button" value="Aggiungi punto" />
                 <br>
                 <input id="SubtractScoreGuest" type="button" value="Sottrai punto" />
                 <br>
@@ -39,12 +39,16 @@
     <table style="width:100%; border: 1px solid black;">
         <tr>
             <td>
+                <label class="punteggio">IdScore</label>
+                <input id="IdScore" type="text" title="IdScore" />
+            </td>
+            <td>
                 <br>
                 <input id="ResetScoreAll" type="button" value="Azzera Tutto" />
             </td>
         </tr>
     </table>
-    <script src="script.js"></script>
-    <script src="server.js"></script>
+    <script src="client.js"></script>
+    <script src="frontend.js"></script>
 </body>
 </html>

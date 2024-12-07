@@ -1,44 +1,23 @@
-async function eseguiQuerySelect() {
+// Funzione per eseguire l'update
+async function eseguiQueryUpdate(team) {
     try {
-        // Fai una richiesta GET al server per eseguire la query
-        const response = await fetch('http://NB-MATTEO:3000/run-query');
+        // Ottieni l'ID del record da aggiornare (assumendo che ci sia un campo input con l'ID "IdScore")
+        const idScore = document.getElementById('IdScore').value;
 
-        // Assicurati che la risposta sia corretta
-        const data = await response.json();
-
-        console.log(data); // Stampa il risultato per vedere la struttura
-
-        // Verifica che i dati siano presenti
-        if (data && data.length > 0) {
-            // Accedi ai dati del primo record (se la query restituisce una lista di oggetti)
-            const firstRecord = data[0];  // Supponiamo che tu voglia il primo record
-            console.log(firstRecord); // Puoi vedere qui i valori di IdScore, ScoreGuest, e ScoreHome
-            document.getElementById('ScoreHome').textContent = `${firstRecord.ScoreHome}`;
-            document.getElementById('ScoreGuest').textContent = `${firstRecord.ScoreGuest}`;
-        } else {
-            document.getElementById('ScoreHome','ScoreGuest').textContent = 'Nessun dato disponibile';
+        if (!idScore || isNaN(idScore) || idScore <= 0) {
+            console.error("ID del punteggio non valido");
+            return;
         }
 
-    } catch (error) {
-        console.error('Errore durante la richiesta:', error);
-    }
-}
-
-
-async function eseguiQueryUpdate() {
-    try {
-
-        // I dati che desideri aggiornare
+        // Dati che desideri inviare al server
         const datiDaAggiornare = {
-            ScoreHome: 10,  // Nuovo valore per ScoreHome
-            ScoreGuest: 20,  // Nuovo valore per ScoreGuest
-            IdScore: document.getElementById('IdScore').value // L'ID dell'elemento da aggiornare
+            IdScore: idScore,
+            team: team  // 'home' o 'guest' a seconda del pulsante premuto
         };
 
-
         // Fai una richiesta POST al server per eseguire l'aggiornamento
-        const response = await fetch('http://NB-MATTEO:3000/update-query', {
-            method: 'POST',  // Puoi usare anche PUT se il tuo server lo richiede
+        const response = await fetch('http://DESKTOP-P3HHPDE:3000/update-query', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',  // Specifica che i dati sono in formato JSON
             },
@@ -50,7 +29,7 @@ async function eseguiQueryUpdate() {
             throw new Error('Errore nella risposta del server');
         }
 
-        // Ottieni la risposta JSON (ad esempio, un messaggio di successo o un numero di righe aggiornate)
+        // Ottieni la risposta JSON
         const data = await response.json();
 
         // Verifica la risposta
@@ -66,41 +45,11 @@ async function eseguiQueryUpdate() {
     }
 }
 
+// Aggiungi gli event listener ai pulsanti
+document.getElementById('ScorePlusHome').addEventListener('click', function () {
+    eseguiQueryUpdate('home');  // Invia 'home' per incrementare ScoreHome
+});
 
-async function eseguiQueryDelete() {
-    try {
-        // I dati che desideri aggiornare
-        const datiDaEliminare = {
-            IdScore: document.getElementById('IdScore').value // L'ID dell'elemento da eliminare
-        };
-
-        // Fai una richiesta POST al server per eseguire l'aggiornamento
-        const response = await fetch('http://NB-MATTEO:3000/delete-query', {
-            method: 'POST',  // Puoi usare anche PUT se il tuo server lo richiede
-            headers: {
-                'Content-Type': 'application/json',  // Specifica che i dati sono in formato JSON
-            },
-            body: JSON.stringify(datiDaEliminare)  // Invia i dati in formato JSON
-        });
-
-        // Assicurati che la risposta sia corretta
-        if (!response.ok) {
-            throw new Error('Errore nella risposta del server');
-        }
-
-        // Ottieni la risposta JSON (ad esempio, un messaggio di successo o un numero di righe aggiornate)
-        const data = await response.json();
-
-        // Verifica la risposta
-        console.log(data);
-        if (data.success) {
-            console.log('Aggiornamento riuscito!');
-        } else {
-            console.error('Errore durante l\'aggiornamento');
-        }
-
-    } catch (error) {
-        console.error('Errore durante la richiesta:', error);
-    }
-}
-
+document.getElementById('ScorePlusGuest').addEventListener('click', function () {
+    eseguiQueryUpdate('guest');  // Invia 'guest' per incrementare ScoreGuest
+});
